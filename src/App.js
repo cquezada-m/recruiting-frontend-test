@@ -70,23 +70,32 @@ function App() {
         )}
 
         {!isEmptyObject(selected.received) &&
-          !isEmptyObject(selected.credit_note) && (
-            <>
-              <button
-                type='button'
-                onClick={toogleModal}
-                className='inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2'
-              >
-                Asignar
-              </button>
+        !isEmptyObject(selected.credit_note) ? (
+          <>
+            <button
+              type='button'
+              onClick={toogleModal}
+              className='inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2'
+            >
+              Asignar
+            </button>
 
-              <ResumeModal
-                isOpen={isOpen}
-                closeModal={handleCloseModal}
-                invoiceData={selected}
-              />
-            </>
-          )}
+            <ResumeModal
+              isOpen={isOpen}
+              closeModal={handleCloseModal}
+              invoiceData={selected}
+            />
+          </>
+        ) : selected.received.id && !creditNotesInvoices.length ? (
+          <div
+            class='bg-blue-100 rounded-lg py-5 px-6 mb-4 text-base text-blue-700 mb-3'
+            role='alert'
+          >
+            No existen notas de crédito para Factura: {selected.received.id}
+          </div>
+        ) : (
+          ''
+        )}
       </div>
     </div>
   );
