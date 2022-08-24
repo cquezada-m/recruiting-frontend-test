@@ -38,8 +38,6 @@ function App() {
     const currentCreditNotes = creditNotesInvoices.filter(
       (crediNote) => crediNote.id != selected.credit_note.id
     );
-    console.log('currentCreditNotes', currentCreditNotes);
-    console.log('creditNotesInvoices', creditNotesInvoices);
 
     setSelected({ received: {}, credit_note: {} });
     setCreditNotesInvoices(currentCreditNotes);

@@ -20,9 +20,17 @@ const usdToClp = (amount) => Math.round(amount * CURRENT_USD_VALUE);
 const amountToCurrency = (amount, currencyType) => {
   switch (currencyType) {
     case 'CLP':
-      return { clp: CLP.format(amount), usd: USD.format(clpToUsd(amount)) };
+      return {
+        amount: amount,
+        clp: CLP.format(amount),
+        usd: USD.format(clpToUsd(amount))
+      };
     case 'USD':
-      return { clp: CLP.format(usdToClp(amount)), usd: USD.format(amount) };
+      return {
+        amount: usdToClp(amount),
+        clp: CLP.format(usdToClp(amount)),
+        usd: USD.format(amount)
+      };
   }
 };
 
